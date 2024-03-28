@@ -1,6 +1,7 @@
 package database
 
 import (
+	"challenge-api/pkg/models"
 	_ "challenge-api/pkg/models"
 	"fmt"
 
@@ -18,7 +19,7 @@ var (
 )
 
 
-func DBInit() (*gorm.DB, error) {
+func DBInit() {
 	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
 		host, user, password, dbname, dbPort)
 
@@ -30,9 +31,13 @@ func DBInit() (*gorm.DB, error) {
 	}
 
 	// fmt.Println("connecting to database")
-	// db.Debug().AutoMigrate(&models.Item{}, &models.Order{})
+	db.Debug().AutoMigrate(&models.User{})
 	
 
-	DB = db
-	return db, nil
+	// DB = db
+	// return db, nil
+}
+
+func GetDB() *gorm.DB {
+	return DB
 }

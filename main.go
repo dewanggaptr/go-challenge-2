@@ -2,21 +2,23 @@ package main
 
 import (
 	"challenge-api/pkg/database"
-	"challenge-api/pkg/routers"
+	route "challenge-api/pkg/routers"
 
-	"github.com/gin-gonic/gin"
+	// "github.com/gin-gonic/gin"
 )
 
 func main() {
 
-	db, err := database.DBInit()
+	// db, err := database.DBInit()
 
-	if err != nil {
-		return 
-	}
+	// if err != nil {
+	// 	return 
+	// }
 	
-	r := gin.Default()
+	// r := gin.Default()
 
-	routes.OrdersRoute(r, db)
-	r.Run()
+	// routes.OrdersRoute(r, db)
+	database.DBInit()
+	r := route.StartApp()
+	r.Run(":8080")
 }
